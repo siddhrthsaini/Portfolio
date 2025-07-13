@@ -38,6 +38,68 @@
             background: #63b3ed; /* A shade of blue */
         }
 
+        /* Mobile menu styles */
+        .mobile-menu {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+
+        /* Animation classes */
+        .animate-fade-in-left {
+            animation: fadeInLeft 1s ease-out;
+        }
+        
+        .animate-fade-in-right {
+            animation: fadeInRight 1s ease-out;
+        }
+        
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Responsive text utilities */
+        .text-responsive-2xl {
+            font-size: clamp(1.5rem, 4vw, 2rem);
+        }
+        
+        .text-responsive-3xl {
+            font-size: clamp(1.875rem, 5vw, 2.5rem);
+        }
+        
+        .text-responsive-4xl {
+            font-size: clamp(2.25rem, 6vw, 3rem);
+        }
+        
+        .text-responsive-5xl {
+            font-size: clamp(3rem, 8vw, 4rem);
+        }
+        
+        .text-responsive-6xl {
+            font-size: clamp(3.75rem, 10vw, 5rem);
+        }
+
     </style>
 </head>
 <body class="bg-gray-900 text-gray-200">
@@ -46,71 +108,91 @@
     <header class="bg-gray-800 shadow-lg fixed w-full z-50 top-0">
         <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
             <!-- Logo/Name -->
-            <a href="#home" class="text-2xl font-bold text-blue-400 hover:text-blue-300 transition-colors duration-300">
+            <a href="#home" class="text-xl sm:text-2xl font-bold text-blue-400 hover:text-blue-300 transition-colors duration-300">
                 Siddharth Saini
             </a>
-            <!-- Navigation Links -->
-            <ul class="flex space-x-6">
-                <li><a href="#home" class="nav-link text-lg font-medium hover:text-blue-400 transition-colors duration-300">Home</a></li>
-                <li><a href="#about" class="nav-link text-lg font-medium hover:text-blue-400 transition-colors duration-300">About</a></li>
-                <li><a href="#skills" class="nav-link text-lg font-medium hover:text-blue-400 transition-colors duration-300">Skills</a></li>
-                <li><a href="#portfolio" class="nav-link text-lg font-medium hover:text-blue-400 transition-colors duration-300">Portfolio</a></li>
-                <li><a href="#contact" class="nav-link text-lg font-medium hover:text-blue-400 transition-colors duration-300">Contact</a></li>
-                <li><a href="#resume" class="nav-link text-lg font-medium hover:text-blue-400 transition-colors duration-300">Resume</a></li>
+            
+            <!-- Desktop Navigation Links -->
+            <ul class="hidden md:flex space-x-4 lg:space-x-6">
+                <li><a href="#home" class="nav-link text-base lg:text-lg font-medium hover:text-blue-400 transition-colors duration-300">Home</a></li>
+                <li><a href="#about" class="nav-link text-base lg:text-lg font-medium hover:text-blue-400 transition-colors duration-300">About</a></li>
+                <li><a href="#skills" class="nav-link text-base lg:text-lg font-medium hover:text-blue-400 transition-colors duration-300">Skills</a></li>
+                <li><a href="#portfolio" class="nav-link text-base lg:text-lg font-medium hover:text-blue-400 transition-colors duration-300">Portfolio</a></li>
+                <li><a href="#contact" class="nav-link text-base lg:text-lg font-medium hover:text-blue-400 transition-colors duration-300">Contact</a></li>
+                <li><a href="#resume" class="nav-link text-base lg:text-lg font-medium hover:text-blue-400 transition-colors duration-300">Resume</a></li>
             </ul>
+            
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-white hover:text-blue-400 transition-colors duration-300">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
         </nav>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu md:hidden fixed top-16 left-0 w-full h-screen bg-gray-800 shadow-lg">
+            <ul class="flex flex-col space-y-4 p-6">
+                <li><a href="#home" class="nav-link text-lg font-medium hover:text-blue-400 transition-colors duration-300 py-2 block">Home</a></li>
+                <li><a href="#about" class="nav-link text-lg font-medium hover:text-blue-400 transition-colors duration-300 py-2 block">About</a></li>
+                <li><a href="#skills" class="nav-link text-lg font-medium hover:text-blue-400 transition-colors duration-300 py-2 block">Skills</a></li>
+                <li><a href="#portfolio" class="nav-link text-lg font-medium hover:text-blue-400 transition-colors duration-300 py-2 block">Portfolio</a></li>
+                <li><a href="#contact" class="nav-link text-lg font-medium hover:text-blue-400 transition-colors duration-300 py-2 block">Contact</a></li>
+                <li><a href="#resume" class="nav-link text-lg font-medium hover:text-blue-400 transition-colors duration-300 py-2 block">Resume</a></li>
+            </ul>
+        </div>
     </header>
 
-    <main class="pt-20"> <!-- Padding top to account for fixed header -->
+    <main class="pt-16 md:pt-20"> <!-- Adjusted padding for mobile -->
 
         <!-- Hero Section -->
-        <section id="home" class="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 to-gray-800 py-16 px-4">
-            <div class="container mx-auto flex flex-col md:flex-row items-center justify-between gap-12">
-                <div class="text-center md:text-left md:w-1/2 animate-fade-in-left">
-                    <p class="text-blue-400 text-xl mb-4">Hi, I'm</p>
-                    <h1 class="text-5xl md:text-6xl font-extrabold leading-tight mb-6">
+        <section id="home" class="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 to-gray-800 py-8 sm:py-12 md:py-16 px-4">
+            <div class="container mx-auto flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12">
+                <div class="text-center lg:text-left lg:w-1/2 animate-fade-in-left">
+                    <p class="text-blue-400 text-lg sm:text-xl mb-4">Hi, I'm</p>
+                    <h1 class="text-responsive-5xl lg:text-responsive-6xl font-extrabold leading-tight mb-4 lg:mb-6">
                         Siddharth Saini
                     </h1>
-                    <h2 class="text-3xl md:text-4xl font-semibold text-gray-300 mb-8">
+                    <h2 class="text-responsive-3xl lg:text-responsive-4xl font-semibold text-gray-300 mb-6 lg:mb-8">
                         A <span class="text-blue-400">Web Developer</span> based in Pune
                     </h2>
-                    <p class="text-lg text-gray-400 mb-10 max-w-lg mx-auto md:mx-0">
+                    <p class="text-base sm:text-lg text-gray-400 mb-8 lg:mb-10 max-w-lg mx-auto lg:mx-0">
                         Passionate about crafting dynamic and user-friendly web experiences. I specialize in building robust and scalable applications.
                     </p>
-                    <div class="flex flex-col sm:flex-row justify-center md:justify-start gap-4">
-                        <a href="#portfolio" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105">
+                    <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
+                        <a href="#portfolio" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 sm:px-8 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 text-sm sm:text-base">
                             View My Work
                         </a>
-                        <a href="#contact" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105">
+                        <a href="#contact" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 sm:px-8 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 text-sm sm:text-base">
                             Contact Me
                         </a>
                     </div>
                 </div>
-                <div class="md:w-1/2 flex justify-center animate-fade-in-right">
-                    <img src="/image.jpg" alt="Siddharth Saini Profile" class="rounded-full shadow-2xl border-4 border-blue-400 w-64 h-64 md:w-80 md:h-80 object-cover">
+                <div class="lg:w-1/2 flex justify-center animate-fade-in-right">
+                    <img src="/image.jpg" alt="Siddharth Saini Profile" class="rounded-full shadow-2xl border-4 border-blue-400 w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 object-cover">
                 </div>
             </div>
         </section>
 
         <!-- About Section -->
-        <section id="about" class="py-16 px-4 bg-gray-800">
+        <section id="about" class="py-12 sm:py-16 px-4 bg-gray-800">
             <div class="container mx-auto text-center">
-                <h2 class="text-4xl font-bold text-white mb-12 relative pb-4">
+                <h2 class="text-responsive-3xl lg:text-4xl font-bold text-white mb-8 lg:mb-12 relative pb-4">
                     About Me
-                    <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-blue-400 rounded-full"></span>
+                    <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-16 sm:w-20 h-1 bg-blue-400 rounded-full"></span>
                 </h2>
-                <div class="flex flex-col md:flex-row items-center gap-12">
-                    <div class="md:w-1/2 flex justify-center animate-fade-in-left">
-                        <img src="/cartoon.jpg" alt="About Siddharth" class="rounded-lg shadow-xl w-72 h-72 md:w-96 md:h-96 object-cover border-2 border-blue-400">
+                <div class="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
+                    <div class="lg:w-1/2 flex justify-center animate-fade-in-left">
+                        <img src="/cartoon.jpg" alt="About Siddharth" class="rounded-lg shadow-xl w-56 h-56 sm:w-72 sm:h-72 md:w-96 md:h-96 object-cover border-2 border-blue-400">
                     </div>
-                    <div class="md:w-1/2 text-left animate-fade-in-right">
-                        <p class="text-lg text-gray-300 mb-6 leading-relaxed">
+                    <div class="lg:w-1/2 text-left animate-fade-in-right">
+                        <p class="text-base sm:text-lg text-gray-300 mb-4 lg:mb-6 leading-relaxed">
                             Hello! I'm Siddharth Saini, a dedicated and innovative Web Developer with a strong passion for creating intuitive and visually appealing digital experiences. My journey in web development began several years ago, driven by a curiosity for how things work on the internet and a desire to build solutions that make an impact.
                         </p>
-                        <p class="text-lg text-gray-300 mb-6 leading-relaxed">
+                        <p class="text-base sm:text-lg text-gray-300 mb-4 lg:mb-6 leading-relaxed">
                             Over the years, I've had the opportunity to work on a diverse range of projects, from responsive marketing websites to complex web applications. I thrive on solving challenging problems and continuously learning new technologies to stay at the forefront of the industry.
                         </p>
-                        <p class="text-lg text-gray-300 leading-relaxed">
+                        <p class="text-base sm:text-lg text-gray-300 leading-relaxed">
                             When I'm not coding, you can find me exploring new tech trends, contributing to open-source projects, or enjoying a good book. I believe in clean code, user-centric design, and the power of collaboration. Let's build something amazing together!
                         </p>
                     </div>
@@ -119,51 +201,51 @@
         </section>
 
         <!-- Skills Section -->
-        <section id="skills" class="py-16 px-4 bg-gray-900">
+        <section id="skills" class="py-12 sm:py-16 px-4 bg-gray-900">
             <div class="container mx-auto text-center">
-                <h2 class="text-4xl font-bold text-white mb-12 relative pb-4">
+                <h2 class="text-responsive-3xl lg:text-4xl font-bold text-white mb-8 lg:mb-12 relative pb-4">
                     My Skills
-                    <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-blue-400 rounded-full"></span>
+                    <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-16 sm:w-20 h-1 bg-blue-400 rounded-full"></span>
                 </h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
                     <!-- Languages -->
-                    <div class="bg-gray-800 p-8 rounded-lg shadow-xl border border-gray-700 transform hover:scale-105 transition-transform duration-300">
-                        <h3 class="text-2xl font-semibold text-blue-400 mb-6">Languages</h3>
-                        <ul class="space-y-4 text-left text-gray-300">
-                            <li class="flex items-center"><span class="text-blue-400 mr-3 text-xl">&#10003;</span> JAVA</li>
-                            <li class="flex items-center"><span class="text-blue-400 mr-3 text-xl">&#10003;</span> JavaScript</li>
-                            <li class="flex items-center"><span class="text-blue-400 mr-3 text-xl">&#10003;</span> SQL</li>
-                            <li class="flex items-center"><span class="text-blue-400 mr-3 text-xl">&#10003;</span> HTML5</li>
-                            <li class="flex items-center"><span class="text-blue-400 mr-3 text-xl">&#10003;</span> CSS3</li>
-                            <li class="flex items-center"><span class="text-blue-400 mr-3 text-xl">&#10003;</span> MongoDB</li>
+                    <div class="bg-gray-800 p-6 lg:p-8 rounded-lg shadow-xl border border-gray-700 transform hover:scale-105 transition-transform duration-300">
+                        <h3 class="text-xl lg:text-2xl font-semibold text-blue-400 mb-4 lg:mb-6">Languages</h3>
+                        <ul class="space-y-3 lg:space-y-4 text-left text-gray-300 text-sm lg:text-base">
+                            <li class="flex items-center"><span class="text-blue-400 mr-3 text-lg lg:text-xl">&#10003;</span> JAVA</li>
+                            <li class="flex items-center"><span class="text-blue-400 mr-3 text-lg lg:text-xl">&#10003;</span> JavaScript</li>
+                            <li class="flex items-center"><span class="text-blue-400 mr-3 text-lg lg:text-xl">&#10003;</span> SQL</li>
+                            <li class="flex items-center"><span class="text-blue-400 mr-3 text-lg lg:text-xl">&#10003;</span> HTML5</li>
+                            <li class="flex items-center"><span class="text-blue-400 mr-3 text-lg lg:text-xl">&#10003;</span> CSS3</li>
+                            <li class="flex items-center"><span class="text-blue-400 mr-3 text-lg lg:text-xl">&#10003;</span> MongoDB</li>
                         </ul>
                     </div>
 
                     <!-- Frameworks -->
-                    <div class="bg-gray-800 p-8 rounded-lg shadow-xl border border-gray-700 transform hover:scale-105 transition-transform duration-300">
-                        <h3 class="text-2xl font-semibold text-blue-400 mb-6">Frameworks</h3>
-                        <ul class="space-y-4 text-left text-gray-300">
-                            <li class="flex items-center"><span class="text-blue-400 mr-3 text-xl">&#10003;</span> React.js</li>
-                            <li class="flex items-center"><span class="text-blue-400 mr-3 text-xl">&#10003;</span> Express.js</li>
-                            <li class="flex items-center"><span class="text-blue-400 mr-3 text-xl">&#10003;</span> Node.js</li>
-                            <li class="flex items-center"><span class="text-blue-400 mr-3 text-xl">&#10003;</span> Spring Boot</li>
-                            <li class="flex items-center"><span class="text-blue-400 mr-3 text-xl">&#10003;</span> Tailwind CSS</li>
+                    <div class="bg-gray-800 p-6 lg:p-8 rounded-lg shadow-xl border border-gray-700 transform hover:scale-105 transition-transform duration-300">
+                        <h3 class="text-xl lg:text-2xl font-semibold text-blue-400 mb-4 lg:mb-6">Frameworks</h3>
+                        <ul class="space-y-3 lg:space-y-4 text-left text-gray-300 text-sm lg:text-base">
+                            <li class="flex items-center"><span class="text-blue-400 mr-3 text-lg lg:text-xl">&#10003;</span> React.js</li>
+                            <li class="flex items-center"><span class="text-blue-400 mr-3 text-lg lg:text-xl">&#10003;</span> Express.js</li>
+                            <li class="flex items-center"><span class="text-blue-400 mr-3 text-lg lg:text-xl">&#10003;</span> Node.js</li>
+                            <li class="flex items-center"><span class="text-blue-400 mr-3 text-lg lg:text-xl">&#10003;</span> Spring Boot</li>
+                            <li class="flex items-center"><span class="text-blue-400 mr-3 text-lg lg:text-xl">&#10003;</span> Tailwind CSS</li>
                         </ul>
                     </div>
 
                     <!-- Developer Tools & Concepts -->
-                    <div class="bg-gray-800 p-8 rounded-lg shadow-xl border border-gray-700 transform hover:scale-105 transition-transform duration-300">
-                        <h3 class="text-2xl font-semibold text-blue-400 mb-6">Tools & Concepts</h3>
-                        <ul class="space-y-4 text-left text-gray-300">
-                            <li class="flex items-center"><span class="text-blue-400 mr-3 text-xl">&#10003;</span> Postman</li>
-                            <li class="flex items-center"><span class="text-blue-400 mr-3 text-xl">&#10003;</span> VS Code</li>
-                            <li class="flex items-center"><span class="text-blue-400 mr-3 text-xl">&#10003;</span> GitHub</li>
-                            <li class="flex items-center"><span class="text-blue-400 mr-3 text-xl">&#10003;</span> IntelliJ IDE</li>
-                            <li class="flex items-center"><span class="text-blue-400 mr-3 text-xl">&#10003;</span> Spring Tool Suite (STS)</li>
-                            <li class="flex items-center"><span class="text-blue-400 mr-3 text-xl">&#10003;</span> Data Structures & Algorithms (DSA)</li>
-                            <li class="flex items-center"><span class="text-blue-400 mr-3 text-xl">&#10003;</span> OOPS</li>
-                            <li class="flex items-center"><span class="text-blue-400 mr-3 text-xl">&#10003;</span> CI/CD Pipelines</li>
-                            <li class="flex items-center"><span class="text-blue-400 mr-3 text-xl">&#10003;</span> RESTful APIs</li>
+                    <div class="bg-gray-800 p-6 lg:p-8 rounded-lg shadow-xl border border-gray-700 transform hover:scale-105 transition-transform duration-300 sm:col-span-2 lg:col-span-1">
+                        <h3 class="text-xl lg:text-2xl font-semibold text-blue-400 mb-4 lg:mb-6">Tools & Concepts</h3>
+                        <ul class="space-y-3 lg:space-y-4 text-left text-gray-300 text-sm lg:text-base">
+                            <li class="flex items-center"><span class="text-blue-400 mr-3 text-lg lg:text-xl">&#10003;</span> Postman</li>
+                            <li class="flex items-center"><span class="text-blue-400 mr-3 text-lg lg:text-xl">&#10003;</span> VS Code</li>
+                            <li class="flex items-center"><span class="text-blue-400 mr-3 text-lg lg:text-xl">&#10003;</span> GitHub</li>
+                            <li class="flex items-center"><span class="text-blue-400 mr-3 text-lg lg:text-xl">&#10003;</span> IntelliJ IDE</li>
+                            <li class="flex items-center"><span class="text-blue-400 mr-3 text-lg lg:text-xl">&#10003;</span> Spring Tool Suite (STS)</li>
+                            <li class="flex items-center"><span class="text-blue-400 mr-3 text-lg lg:text-xl">&#10003;</span> Data Structures & Algorithms (DSA)</li>
+                            <li class="flex items-center"><span class="text-blue-400 mr-3 text-lg lg:text-xl">&#10003;</span> OOPS</li>
+                            <li class="flex items-center"><span class="text-blue-400 mr-3 text-lg lg:text-xl">&#10003;</span> CI/CD Pipelines</li>
+                            <li class="flex items-center"><span class="text-blue-400 mr-3 text-lg lg:text-xl">&#10003;</span> RESTful APIs</li>
                         </ul>
                     </div>
                 </div>
@@ -171,50 +253,50 @@
         </section>
 
         <!-- Portfolio Section -->
-        <section id="portfolio" class="py-16 px-4 bg-gray-800">
+        <section id="portfolio" class="py-12 sm:py-16 px-4 bg-gray-800">
             <div class="container mx-auto text-center">
-                <h2 class="text-4xl font-bold text-white mb-12 relative pb-4">
+                <h2 class="text-responsive-3xl lg:text-4xl font-bold text-white mb-8 lg:mb-12 relative pb-4">
                     My Portfolio
-                    <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-blue-400 rounded-full"></span>
+                    <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-16 sm:w-20 h-1 bg-blue-400 rounded-full"></span>
                 </h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-6 lg:gap-8">
                     <!-- Project Card 1: Journal Application -->
                     <div class="bg-gray-900 rounded-lg shadow-xl overflow-hidden border border-gray-700 transform hover:scale-105 transition-transform duration-300">
-                        <img src="https://placehold.co/600x400/2d3748/a0aec0?text=Journal+App" alt="Journal Application" class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h3 class="text-2xl font-semibold text-blue-400 mb-3">Journal Application</h3>
-                            <p class="text-gray-300 mb-4">Built using Java, Spring Boot, MongoDB, Lombok and REST APIs, made journaling effective by 30%.</p>
-                            <a href="#" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full transition-colors duration-300">Source Code</a>
+                        <img src="https://placehold.co/600x400/2d3748/a0aec0?text=Journal+App" alt="Journal Application" class="w-full h-40 sm:h-48 object-cover">
+                        <div class="p-4 lg:p-6">
+                            <h3 class="text-lg lg:text-2xl font-semibold text-blue-400 mb-2 lg:mb-3">Journal Application</h3>
+                            <p class="text-sm lg:text-base text-gray-300 mb-3 lg:mb-4">Built using Java, Spring Boot, MongoDB, Lombok and REST APIs, made journaling effective by 30%.</p>
+                            <a href="#" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 lg:px-6 rounded-full transition-colors duration-300 text-sm lg:text-base">Source Code</a>
                         </div>
                     </div>
 
                     <!-- Project Card 2: Currency Converter -->
                     <div class="bg-gray-900 rounded-lg shadow-xl overflow-hidden border border-gray-700 transform hover:scale-105 transition-transform duration-300">
-                        <img src="https://placehold.co/600x400/2d3748/a0aec0?text=Currency+Converter" alt="Currency Converter" class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h3 class="text-2xl font-semibold text-blue-400 mb-3">Currency Converter</h3>
-                            <p class="text-gray-300 mb-4">Developed a React.js currency converter with Tailwind CSS, integrating ExchangeRate-API for real-time rates.</p>
-                            <a href="#" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full transition-colors duration-300">Source Code</a>
+                        <img src="https://placehold.co/600x400/2d3748/a0aec0?text=Currency+Converter" alt="Currency Converter" class="w-full h-40 sm:h-48 object-cover">
+                        <div class="p-4 lg:p-6">
+                            <h3 class="text-lg lg:text-2xl font-semibold text-blue-400 mb-2 lg:mb-3">Currency Converter</h3>
+                            <p class="text-sm lg:text-base text-gray-300 mb-3 lg:mb-4">Developed a React.js currency converter with Tailwind CSS, integrating ExchangeRate-API for real-time rates.</p>
+                            <a href="#" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 lg:px-6 rounded-full transition-colors duration-300 text-sm lg:text-base">Source Code</a>
                         </div>
                     </div>
 
                     <!-- Project Card 3: Project Manager -->
                     <div class="bg-gray-900 rounded-lg shadow-xl overflow-hidden border border-gray-700 transform hover:scale-105 transition-transform duration-300">
-                        <img src="https://placehold.co/600x400/2d3748/a0aec0?text=Project+Manager" alt="Project Manager" class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h3 class="text-2xl font-semibold text-blue-400 mb-3">Project Manager System</h3>
-                            <p class="text-gray-300 mb-4">Full-stack system using React, Tailwind CSS, Spring Boot, and PostgreSQL, reducing page load time by 40%.</p>
-                            <a href="#" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full transition-colors duration-300">Source Code</a>
+                        <img src="https://placehold.co/600x400/2d3748/a0aec0?text=Project+Manager" alt="Project Manager" class="w-full h-40 sm:h-48 object-cover">
+                        <div class="p-4 lg:p-6">
+                            <h3 class="text-lg lg:text-2xl font-semibold text-blue-400 mb-2 lg:mb-3">Project Manager System</h3>
+                            <p class="text-sm lg:text-base text-gray-300 mb-3 lg:mb-4">Full-stack system using React, Tailwind CSS, Spring Boot, and PostgreSQL, reducing page load time by 40%.</p>
+                            <a href="#" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 lg:px-6 rounded-full transition-colors duration-300 text-sm lg:text-base">Source Code</a>
                         </div>
                     </div>
 
                     <!-- Project Card 4: Beyond Foam (Freelance) -->
                     <div class="bg-gray-900 rounded-lg shadow-xl overflow-hidden border border-gray-700 transform hover:scale-105 transition-transform duration-300">
-                        <img src="https://placehold.co/600x400/2d3748/a0aec0?text=Beyond+Foam" alt="Beyond Foam" class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h3 class="text-2xl font-semibold text-blue-400 mb-3">Beyond Foam (E-commerce)</h3>
-                            <p class="text-gray-300 mb-4">Led 80% development and deployment of a live e-commerce website using Shopify.</p>
-                            <a href="#" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full transition-colors duration-300">Website Link</a>
+                        <img src="https://placehold.co/600x400/2d3748/a0aec0?text=Beyond+Foam" alt="Beyond Foam" class="w-full h-40 sm:h-48 object-cover">
+                        <div class="p-4 lg:p-6">
+                            <h3 class="text-lg lg:text-2xl font-semibold text-blue-400 mb-2 lg:mb-3">Beyond Foam (E-commerce)</h3>
+                            <p class="text-sm lg:text-base text-gray-300 mb-3 lg:mb-4">Led 80% development and deployment of a live e-commerce website using Shopify.</p>
+                            <a href="#" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 lg:px-6 rounded-full transition-colors duration-300 text-sm lg:text-base">Website Link</a>
                         </div>
                     </div>
                 </div>
@@ -222,49 +304,49 @@
         </section>
 
         <!-- Resume Download Section -->
-        <section id="resume" class="py-16 px-4 bg-gray-900 text-center">
+        <section id="resume" class="py-12 sm:py-16 px-4 bg-gray-900 text-center">
             <div class="container mx-auto">
-                <h2 class="text-4xl font-bold text-white mb-12 relative pb-4">
+                <h2 class="text-responsive-3xl lg:text-4xl font-bold text-white mb-8 lg:mb-12 relative pb-4">
                     Download My Resume
-                    <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-blue-400 rounded-full"></span>
+                    <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-16 sm:w-20 h-1 bg-blue-400 rounded-full"></span>
                 </h2>
-                <p class="text-lg text-gray-300 mb-8">
+                <p class="text-base sm:text-lg text-gray-300 mb-6 lg:mb-8 max-w-2xl mx-auto">
                     Click the button below to download my full resume in PDF format.
                 </p>
                 <!-- Replace 'path/to/your/resume.pdf' with the actual path to your resume file -->
                 <a href="https://example.com/Sid-NewResume.pdf" download="Siddharth_Saini_Resume.pdf"
-                   class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-10 rounded-full shadow-lg text-xl transition-all duration-300 transform hover:scale-105">
+                   class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 sm:px-10 rounded-full shadow-lg text-lg sm:text-xl transition-all duration-300 transform hover:scale-105">
                     Download Resume
                 </a>
             </div>
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="py-16 px-4 bg-gray-800">
+        <section id="contact" class="py-12 sm:py-16 px-4 bg-gray-800">
             <div class="container mx-auto text-center">
-                <h2 class="text-4xl font-bold text-white mb-12 relative pb-4">
+                <h2 class="text-responsive-3xl lg:text-4xl font-bold text-white mb-8 lg:mb-12 relative pb-4">
                     Get In Touch
-                    <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-blue-400 rounded-full"></span>
+                    <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-16 sm:w-20 h-1 bg-blue-400 rounded-full"></span>
                 </h2>
-                <div class="max-w-xl mx-auto bg-gray-900 p-8 rounded-lg shadow-xl border border-gray-700">
-                    <p class="text-lg text-gray-300 mb-8">
+                <div class="max-w-lg sm:max-w-xl mx-auto bg-gray-900 p-6 sm:p-8 rounded-lg shadow-xl border border-gray-700">
+                    <p class="text-base sm:text-lg text-gray-300 mb-6 lg:mb-8">
                         Have a project in mind or just want to say hello? Feel free to reach out!
                     </p>
                     
                     <!-- Success Message -->
                     <div id="success-message" class="hidden mb-6 p-4 bg-green-600 text-white rounded-lg">
-                        <p class="font-semibold text-lg">Form submitted successfully!</p>
-                        <p class="text-sm">Thank you for reaching out. I'll get back to you soon!</p>
+                        <p class="font-semibold text-base sm:text-lg">Form submitted successfully!</p>
+                        <p class="text-xs sm:text-sm">Thank you for reaching out. I'll get back to you soon!</p>
                     </div>
                     
                     <!-- Error Message -->
                     <div id="error-message" class="hidden mb-6 p-4 bg-red-600 text-white rounded-lg">
-                        <p class="font-semibold">Oops! Something went wrong.</p>
-                        <p class="text-sm">Please try again or contact me directly via email.</p>
+                        <p class="font-semibold text-sm sm:text-base">Oops! Something went wrong.</p>
+                        <p class="text-xs sm:text-sm">Please try again or contact me directly via email.</p>
                     </div>
                     
                     <!-- FormSubmit Integration -->
-                    <form action="https://formsubmit.co/siddhrthsaini@gmail.com" method="POST" id="contact-form" class="space-y-6">
+                    <form action="https://formsubmit.co/siddhrthsaini@gmail.com" method="POST" id="contact-form" class="space-y-4 lg:space-y-6">
                         <!-- Hidden fields for FormSubmit configuration -->
                         <input type="hidden" name="_subject" value="New Contact Form Message from Portfolio">
                         <input type="hidden" name="_template" value="table">
@@ -274,25 +356,25 @@
                         
                         <div>
                             <input type="text" id="name" name="name" placeholder="Your Name"
-                                class="w-full p-3 rounded-md bg-gray-700 border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                                class="w-full p-3 rounded-md bg-gray-700 border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base" required>
                         </div>
                         <div>
                             <input type="email" id="email" name="email" placeholder="Your Email"
-                                class="w-full p-3 rounded-md bg-gray-700 border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                                class="w-full p-3 rounded-md bg-gray-700 border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base" required>
                         </div>
                         <div>
                             <input type="text" id="subject" name="subject" placeholder="Subject"
-                                class="w-full p-3 rounded-md bg-gray-700 border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                                class="w-full p-3 rounded-md bg-gray-700 border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base" required>
                         </div>
                         <div>
-                            <textarea id="message" name="message" rows="6" placeholder="Your Message"
-                                class="w-full p-3 rounded-md bg-gray-700 border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500" required></textarea>
+                            <textarea id="message" name="message" rows="5" placeholder="Your Message"
+                                class="w-full p-3 rounded-md bg-gray-700 border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base" required></textarea>
                         </div>
                         <button type="submit" id="submit-btn"
-                            class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center">
+                            class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center text-sm sm:text-base">
                             <span id="btn-text">Send Message</span>
                             <span id="btn-loading" class="hidden">
-                                <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <svg class="animate-spin -ml-1 mr-3 h-4 w-4 sm:h-5 sm:w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                     <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                                     <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                                 </svg>
@@ -301,15 +383,15 @@
                         </button>
                     </form>
                     
-                    <div class="mt-8 flex justify-center space-x-6">
+                    <div class="mt-6 lg:mt-8 flex justify-center space-x-4 lg:space-x-6">
                         <!-- Social Media Icons -->
-                        <a href="https://www.linkedin.com/in/siddharth-saini-b94b0b1b7/" target="_blank" class="text-gray-400 hover:text-blue-400 transition-colors duration-300 text-3xl">
+                        <a href="https://www.linkedin.com/in/siddharth-saini-b94b0b1b7/" target="_blank" class="text-gray-400 hover:text-blue-400 transition-colors duration-300">
                             <!-- LinkedIn icon -->
-                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                            <svg class="w-6 h-6 sm:w-8 sm:h-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                         </a>
-                        <a href="https://github.com/SiddharthSaini" target="_blank" class="text-gray-400 hover:text-blue-400 transition-colors duration-300 text-3xl">
+                        <a href="https://github.com/SiddharthSaini" target="_blank" class="text-gray-400 hover:text-blue-400 transition-colors duration-300">
                             <!-- GitHub icon -->
-                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.835 2.809 1.305 3.493.998.108-.776.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.046.138 3.003.404 2.293-1.552 3.301-1.23 3.301-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.197-6.091 8.197-11.387c0-6.627-5.373-12-12-12z"/></svg>
+                            <svg class="w-6 h-6 sm:w-8 sm:h-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.835 2.809 1.305 3.493.998.108-.776.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.046.138 3.003.404 2.293-1.552 3.301-1.23 3.301-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.197-6.091 8.197-11.387c0-6.627-5.373-12-12-12z"/></svg>
                         </a>
                         <!-- Add more social media icons as needed -->
                     </div>
@@ -319,18 +401,39 @@
 
     </main>
 
-
-
     <!-- Footer Section -->
-    <footer class="bg-gray-800 py-8 px-4 text-center text-gray-400 text-sm">
+    <footer class="bg-gray-800 py-6 sm:py-8 px-4 text-center text-gray-400 text-xs sm:text-sm">
         <div class="container mx-auto">
-            <p>&copy; 2023 Siddharth Saini. All rights reserved.</p>
-            <p class="mt-2">Designed and Developed with ❤️</p>
+            <p>&copy; 2025 Siddharth Saini. All rights reserved.</p>
+            <p class="mt-2">Designed and Developed with  ❤️  by  Siddharth Saini and AI Tools</p>
         </div>
     </footer>
 
     <script>
-        // Optional: Smooth scrolling for navigation links
+        // Mobile menu functionality
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileNavLinks = mobileMenu.querySelectorAll('.nav-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+        });
+
+        // Close mobile menu when clicking on a link
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                mobileMenu.classList.remove('open');
+            }
+        });
+
+        // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
