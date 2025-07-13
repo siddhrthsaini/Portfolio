@@ -351,6 +351,21 @@
             const successMessage = document.getElementById('success-message');
             const errorMessage = document.getElementById('error-message');
             
+            // Validate form
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const subject = document.getElementById('subject').value.trim();
+            const message = document.getElementById('message').value.trim();
+            
+            if (!name || !email || !subject || !message) {
+                // Show error message for validation
+                errorMessage.classList.remove('hidden');
+                setTimeout(() => {
+                    errorMessage.classList.add('hidden');
+                }, 3000);
+                return;
+            }
+            
             // Show loading state
             submitBtn.disabled = true;
             btnText.classList.add('hidden');
@@ -371,7 +386,7 @@
                 });
                 
                 if (response.ok) {
-                    // Show success message
+                    // Show success message immediately
                     successMessage.classList.remove('hidden');
                     
                     // Reset form
@@ -381,6 +396,9 @@
                     submitBtn.disabled = false;
                     btnText.classList.remove('hidden');
                     btnLoading.classList.add('hidden');
+                    
+                    // Scroll to success message
+                    successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
                     
                     // Hide success message after 5 seconds
                     setTimeout(() => {
@@ -429,6 +447,14 @@
                     link.classList.add('active');
                 }
             });
+        });
+
+        // Additional click handler for submit button (for immediate feedback)
+        document.getElementById('submit-btn').addEventListener('click', function() {
+            // This will work alongside the form submit event
+            // The form submit event will handle the actual submission
+            // This just ensures the button click is registered
+            console.log('Submit button clicked');
         });
 
     </script>
